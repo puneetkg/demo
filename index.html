@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Eats – Find the best restaurants nearby</title>
+  <meta name="description" content="Search, filter and compare the best restaurants in our area.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <a class="brand" href="./">Local<span>Eats</span></a>
+      <h1>Find the best restaurants in <span id="area-name">our area</span></h1>
+      <p class="lead">Search by name, cuisine or dish. Filter by price, rating and what's open right now.</p>
+      <form class="search" role="search" onsubmit="return false">
+        <label class="visually-hidden" for="q">Search restaurants</label>
+        <input id="q" type="search" placeholder="Try “pasta”, “Thai” or “outdoor seating”" autocomplete="off">
+      </form>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <aside class="filters" aria-label="Filters">
+      <div class="filters-head">
+        <h2>Filters</h2>
+        <button type="button" id="reset" class="link-btn">Reset</button>
+      </div>
+
+      <fieldset>
+        <legend>Cuisine</legend>
+        <select id="cuisine"><option value="">All cuisines</option></select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Neighborhood</legend>
+        <select id="neighborhood"><option value="">All neighborhoods</option></select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Price</legend>
+        <div class="chips" id="price">
+          <label><input type="checkbox" value="1"><span>$</span></label>
+          <label><input type="checkbox" value="2"><span>$$</span></label>
+          <label><input type="checkbox" value="3"><span>$$$</span></label>
+          <label><input type="checkbox" value="4"><span>$$$$</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Minimum rating: <output id="rating-out">Any</output></legend>
+        <input id="rating" type="range" min="0" max="4.5" step="0.5" value="0">
+      </fieldset>
+
+      <fieldset class="toggles">
+        <label><input type="checkbox" id="open-now"> Open now</label>
+        <label><input type="checkbox" id="favs-only"> Favorites only</label>
+      </fieldset>
+    </aside>
+
+    <section class="results" aria-live="polite">
+      <div class="results-bar">
+        <p id="count"></p>
+        <label>Sort by
+          <select id="sort">
+            <option value="best">Best match</option>
+            <option value="rating">Highest rated</option>
+            <option value="reviews">Most reviewed</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </label>
+      </div>
+      <ul id="list" class="grid"></ul>
+      <div id="empty" class="empty" hidden>
+        <p>No restaurants match those filters.</p>
+        <button type="button" class="btn" id="empty-reset">Clear filters</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <button type="button" class="close" aria-label="Close" data-close>&times;</button>
+    <div id="detail-body"></div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Restaurant listings shown are sample data. Edit <code>js/data.js</code> to add the places in your area.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
