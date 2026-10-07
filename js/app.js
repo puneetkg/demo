@@ -231,7 +231,7 @@
     if (state.openNow) p.set("open", "1");
     if (state.sort !== "best") p.set("sort", state.sort);
     const qs = p.toString();
-    history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
+    try { history.replaceState(null, "", qs ? `?${qs}` : location.pathname); } catch (_) { /* sandboxed frame */ }
   }
 
   function loadUrl() {
